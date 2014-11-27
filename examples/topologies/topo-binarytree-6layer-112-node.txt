@@ -1,0 +1,231 @@
+#topo-binarytree-6layer-112-node.txt
+
+router
+
+# node   comment  yPos    xPos
+Src      NA        9.5      9
+Rtr1     NA        9.5      8
+Rtr2     NA        5.5      7
+Rtr3     NA        13.5     7
+Rtr4     NA        3.5      6
+Rtr5     NA        7.5      6
+Rtr6     NA        11.5     6
+Rtr7     NA        15.5     6
+Rtr8     NA        2.5      5
+Rtr9     NA        4.5      5
+Rtr10    NA        6.5      5
+Rtr11    NA        8.5      5
+Rtr12    NA        10.5     5
+Rtr13    NA        12.5     5
+Rtr14    NA        14.5     5
+Rtr15    NA        16.5     5
+Rtr16    NA        1.5      4
+Rtr17    NA        3.5      4
+Rtr18    NA        5.5      4
+Rtr19    NA        7.5      4
+Rtr20    NA        9.5      4
+Rtr21    NA        11.5     4
+Rtr22    NA        13.5     4
+Rtr23    NA        15.5     4
+Rtr24    NA        17.5     4
+Rtr25    NA        19.5     4
+Rtr26    NA        21.5     4
+Rtr27    NA        23.5     4
+Rtr28    NA        25.5     4
+Rtr29    NA        27.5     4
+Rtr30    NA        29.5     4
+Rtr31    NA        31.5     4
+Rtr32    NA        1        2
+Rtr33    NA        2        2
+Rtr34    NA        3        2
+Rtr35    NA        4        2
+Rtr36    NA        5        2
+Rtr37    NA        6        2
+Rtr38    NA        7        2
+Rtr39    NA        8        2
+Rtr40    NA        9        2
+Rtr41    NA        10       2
+Rtr42    NA        11       2
+Rtr43    NA        12       2
+Rtr44    NA        13       2
+Rtr45    NA        14       2
+Rtr46    NA        15       2
+Rtr47    NA        16       2
+Rtr48    NA        17       2
+Rtr49    NA        18       2
+Rtr50    NA        19       2
+Rtr51    NA        20       2
+Rtr52    NA        21       2
+Rtr53    NA        22       2
+Rtr54    NA        23       2
+Rtr55    NA        24       2
+Rtr56    NA        25       2
+Rtr57    NA        26       2
+Rtr58    NA        27       2
+Rtr59    NA        28       2
+Rtr60    NA        29       2
+Rtr61    NA        30       2
+Rtr62    NA        31       2
+Rtr63    NA        32       2
+Dst1     NA        1.5      3
+Dst2     NA        3.5      3
+Dst3     NA        5.5      3
+Dst4     NA        7.5      3
+Dst5     NA        9.5      3
+Dst6     NA        11.5     3
+Dst7     NA        13.5     3
+Dst8     NA        15.5     3
+Dst9     NA        17.5     3
+Dst10    NA        19.5     3
+Dst11    NA        21.5     3
+Dst12    NA        23.5     3
+Dst13    NA        25.5     3
+Dst14    NA        27.5     3
+Dst15    NA        29.5     3
+Dst16    NA        31.5     3
+Dst17    NA        1        1
+Dst18    NA        2        1
+Dst19    NA        3        1
+Dst20    NA        4        1
+Dst21    NA        5        1
+Dst22    NA        6        1
+Dst23    NA        7        1
+Dst24    NA        8        1
+Dst25    NA        9        1
+Dst26    NA        10       1
+Dst27    NA        11       1
+Dst28    NA        12       1
+Dst29    NA        13       1
+Dst30    NA        14       1
+Dst31    NA        15       1
+Dst32    NA        16       1
+Dst33    NA        17       1
+Dst34    NA        18       1
+Dst35    NA        19       1
+Dst36    NA        20       1
+Dst37    NA        21       1
+Dst38    NA        22       1
+Dst39    NA        23       1
+Dst40    NA        24       1
+Dst41    NA        25       1
+Dst42    NA        26       1
+Dst43    NA        27       1
+Dst44    NA        28       1
+Dst45    NA        29       1
+Dst46    NA        30       1
+Dst47    NA        31       1
+Dst48    NA        32       1
+
+link
+# srcNode   dstNode     bandwidth   metric    delay   queue
+Src         Rtr1        100Mbps      1        10ms     10
+Rtr1        Rtr2        100Mbps      1        10ms     10
+Rtr1        Rtr3        100Mbps      1        10ms     10
+Rtr2        Rtr4        100Mbps      1        10ms     10
+Rtr2        Rtr5        100Mbps      1        10ms     10
+Rtr3        Rtr6        100Mbps      1        10ms     10
+Rtr3        Rtr7        100Mbps      1        10ms     10
+Rtr4        Rtr8        100Mbps      1        10ms     10
+Rtr4        Rtr9        100Mbps      1        10ms     10
+Rtr5        Rtr10       10Mbps       1        10ms     10
+Rtr5        Rtr11       10Mbps       1        10ms     10
+Rtr6        Rtr12       10Mbps       1        10ms     10
+Rtr6        Rtr13       10Mbps       1        10ms     10
+Rtr7        Rtr14       10Mbps       1        10ms     10
+Rtr7        Rtr15       10Mbps       1        10ms     10
+Rtr8        Rtr16       100Mbps      1        10ms     10
+Rtr8        Rtr17       100Mbps      1        10ms     10
+Rtr9        Rtr18       100Mbps      1        10ms     10
+Rtr9        Rtr19       100Mbps      1        10ms     10
+Rtr10       Rtr20       100Mbps      1        10ms     10
+Rtr10       Rtr21       100Mbps      1        10ms     10
+Rtr11       Rtr22       100Mbps      1        10ms     10
+Rtr11       Rtr23       100Mbps      1        10ms     10
+Rtr12       Rtr24       100Mbps      1        10ms     10
+Rtr12       Rtr25       100Mbps      1        10ms     10
+Rtr13       Rtr26       100Mbps      1        10ms     10
+Rtr13       Rtr27       100Mbps      1        10ms     10
+Rtr14       Rtr28       100Mbps      1        10ms     10
+Rtr14       Rtr29       100Mbps      1        10ms     10
+Rtr15       Rtr30       100Mbps      1        10ms     10
+Rtr15       Rtr31       100Mbps      1        10ms     10
+Rtr16       Rtr32       100Mbps      1        10ms     10
+Rtr16       Rtr33       100Mbps      1        10ms     10
+Rtr16       Dst1        100Mbps      1        10ms     10
+Rtr17       Rtr34       100Mbps      1        10ms     10
+Rtr17       Rtr35       100Mbps      1        10ms     10
+Rtr17       Dst2        100Mbps      1        10ms     10
+Rtr18       Rtr36       100Mbps      1        10ms     10
+Rtr18       Rtr37       100Mbps      1        10ms     10
+Rtr18       Dst3        100Mbps      1        10ms     10
+Rtr19       Rtr38       100Mbps      1        10ms     10
+Rtr19       Rtr39       100Mbps      1        10ms     10
+Rtr19       Dst4        100Mbps      1        10ms     10
+Rtr20       Rtr40       100Mbps      1        10ms     10
+Rtr20       Rtr41       100Mbps      1        10ms     10
+Rtr20       Dst5        100Mbps      1        10ms     10
+Rtr21       Rtr42       100Mbps      1        10ms     10
+Rtr21       Rtr43       100Mbps      1        10ms     10
+Rtr21       Dst6        100Mbps      1        10ms     10
+Rtr22       Rtr44       100Mbps      1        10ms     10
+Rtr22       Rtr45       100Mbps      1        10ms     10
+Rtr22       Dst7        100Mbps      1        10ms     10
+Rtr23       Rtr46       100Mbps      1        10ms     10
+Rtr23       Rtr47       100Mbps      1        10ms     10
+Rtr23       Dst8        100Mbps      1        10ms     10
+Rtr24       Rtr48       100Mbps      1        10ms     10
+Rtr24       Rtr49       100Mbps      1        10ms     10
+Rtr24       Dst9        100Mbps      1        10ms     10
+Rtr25       Rtr50       100Mbps      1        10ms     10
+Rtr25       Rtr51       100Mbps      1        10ms     10
+Rtr25       Dst10       100Mbps      1        10ms     10
+Rtr26       Rtr52       100Mbps      1        10ms     10
+Rtr26       Rtr53       100Mbps      1        10ms     10
+Rtr26       Dst11       100Mbps      1        10ms     10
+Rtr27       Rtr54       100Mbps      1        10ms     10
+Rtr27       Rtr55       100Mbps      1        10ms     10
+Rtr27       Dst12       100Mbps      1        10ms     10
+Rtr28       Rtr56       100Mbps      1        10ms     10
+Rtr28       Rtr57       100Mbps      1        10ms     10
+Rtr28       Dst13       100Mbps      1        10ms     10
+Rtr29       Rtr58       100Mbps      1        10ms     10
+Rtr29       Rtr59       100Mbps      1        10ms     10
+Rtr29       Dst14       100Mbps      1        10ms     10
+Rtr30       Rtr60       100Mbps      1        10ms     10
+Rtr30       Rtr61       100Mbps      1        10ms     10
+Rtr30       Dst15       100Mbps      1        10ms     10
+Rtr31       Rtr62       100Mbps      1        10ms     10
+Rtr31       Rtr63       100Mbps      1        10ms     10
+Rtr31       Dst16       100Mbps      1        10ms     10
+Rtr32       Dst17       100Mbps      1        10ms     10
+Rtr33       Dst18       100Mbps      1        10ms     10
+Rtr34       Dst19       100Mbps      1        10ms     10
+Rtr35       Dst20       100Mbps      1        10ms     10
+Rtr36       Dst21       100Mbps      1        10ms     10
+Rtr37       Dst22       100Mbps      1        10ms     10
+Rtr38       Dst23       100Mbps      1        10ms     10
+Rtr39       Dst24       100Mbps      1        10ms     10
+Rtr40       Dst25       100Mbps      1        10ms     10
+Rtr41       Dst26       100Mbps      1        10ms     10
+Rtr42       Dst27       100Mbps      1        10ms     10
+Rtr43       Dst28       100Mbps      1        10ms     10
+Rtr44       Dst29       100Mbps      1        10ms     10
+Rtr45       Dst30       100Mbps      1        10ms     10
+Rtr46       Dst31       100Mbps      1        10ms     10
+Rtr47       Dst32       100Mbps      1        10ms     10
+Rtr48       Dst33       100Mbps      1        10ms     10
+Rtr49       Dst34       100Mbps      1        10ms     10
+Rtr50       Dst35       100Mbps      1        10ms     10
+Rtr51       Dst36       100Mbps      1        10ms     10
+Rtr52       Dst37       100Mbps      1        10ms     10
+Rtr53       Dst38       100Mbps      1        10ms     10
+Rtr54       Dst39       100Mbps      1        10ms     10
+Rtr55       Dst40       100Mbps      1        10ms     10
+Rtr56       Dst41       100Mbps      1        10ms     10
+Rtr57       Dst42       100Mbps      1        10ms     10
+Rtr58       Dst43       100Mbps      1        10ms     10
+Rtr59       Dst44       100Mbps      1        10ms     10
+Rtr60       Dst45       100Mbps      1        10ms     10
+Rtr61       Dst46       100Mbps      1        10ms     10
+Rtr62       Dst47       100Mbps      1        10ms     10
+Rtr63       Dst48       100Mbps      1        10ms     10
