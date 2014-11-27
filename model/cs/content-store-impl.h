@@ -204,7 +204,7 @@ ContentStoreImpl< Policy >::GetTypeId ()
     .AddConstructor< ContentStoreImpl< Policy > > ()
     .AddAttribute ("MaxSize",
                    "Set maximum number of entries in ContentStore. If 0, limit is not enforced",
-                   StringValue ("4000"),
+                   StringValue ("400"),
                    MakeUintegerAccessor (&ContentStoreImpl< Policy >::GetMaxSize,
                                          &ContentStoreImpl< Policy >::SetMaxSize),
                    MakeUintegerChecker<uint32_t> ())

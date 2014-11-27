@@ -147,7 +147,13 @@ struct lfu_policy_save_tag_traits
       {
     	  //hengheng
     	  float temp[5] = {  0.4647, 0.2201, 0.2201, 0.0661, 0.0289 };
-    	  for (int i = 0 ; i<= 4 ; i++) { ratio.push_back(temp[i]) ; }
+    	  for ( int i = 0 ; i< 4 ; i++)
+    	  {
+    		  ratio.push_back(temp[i]) ;
+    	  }
+    	;
+    	  CalNewMaxValue();
+
       }
 
       /////
@@ -161,10 +167,55 @@ struct lfu_policy_save_tag_traits
         policy_container::insert (*item);
       }
 
-      void CalNewMaxValue(uint32_t & tag_value)
+  	void ToAllPositive( std::vector<uint32_t>& temp_vect) { //这个function 可以作为一个工具类放到utils中
+  		bool isAllpositive = false;
+  		uint32_t limits = 10;
+  		while (1) {
+  			for (int i = 0; i <= 4; i++) {
+  				if (temp_vect[i] <= 0) {
+  					for (int j = 4; j >= 0; j--) {
+  						if (i == j)
+  							continue;
+  						//这里把limit 改为 10
+  						if ((temp_vect[j] - limits) > 0) {
+  							temp_vect[j]--;
+  							temp_vect[i]++;
+  							break;
+  						}
+  					}
+  				}
+  			}
+  			isAllpositive = true;
+  			for (int i = 0; i <= 4; i++) {
+  				if (temp_vect[i] <= 0)
+  					isAllpositive = false;
+  			}
+  			for (int i = 0; i <= 4; i++) {
+  				//std::cout << "" << i << "" << temp_vect[i] << std::endl;
+  				//std::cout << std::endl;
+  			}
+  			if (isAllpositive == true)
+  				break;
+  		}
+  	}
+
+
+
+
+      void CalNewMaxValue()
       {
+    	  uint32_t temp_sum;
+    	  for (int i = 0 ; i<= 4 ; i++) {//
+
+        		  max_vect_by_tag[i] = int(max_size_ * ratio[i]) ;
+        		  temp_sum += max_vect_by_tag[i] ;
+        	  }
+    	  ///
+        	  this->max_vect_by_tag[4] = max_size_ -  ( temp_sum - max_vect_by_tag[4] ) ;
+        	  this->ToAllPositive(max_vect_by_tag) ;
 
     	  //设置一下 各个部分的最大数量...关键..
+        	  /*
     	        //hengheng
     	      	float temp = 0.0 ;
     	      	//// int() 取整数部分
@@ -186,6 +237,8 @@ struct lfu_policy_save_tag_traits
     	  			temp = ratio[4];max_vect_by_tag[4] = int(max_size_ * temp);
     	  			 break;
     	      	}
+    	      	*/
+
       }
 
 
@@ -204,9 +257,10 @@ struct lfu_policy_save_tag_traits
 
         /// 统计各个tag的entry数量
         std::vector<int> count_vect_by_tag(5);
-		count_vect_by_tag = GetCountByTag(count_vect_by_tag);
+		count_vect_by_tag = GetCountByTag(count_vect_by_tag); //这是获得各个类别的cs中的数量.
         // after this ,nvect_by_tag 就被填充满了
-        CalNewMaxValue(tag_value) ;
+        CalNewMaxValue() ;  //为了把 max_vect_by_tag填满. 当获得新的ratio后,
+
         typename parent_trie::iterator trieIt;
 
        if (policy_container::size() ==  max_size_ )   //if 1    不满的话就随便添.
@@ -218,8 +272,11 @@ struct lfu_policy_save_tag_traits
           if(count_vect_by_tag[tag_value -1] >= max_vect_by_tag[tag_value -1]) // if 2 如果来的tag的数量大于max值
     	   {
 					  GetTrieIter(tag, tag_value, trieIt) ;
+      			 	std::cout << "trieit结果2的count, tag-in" << trieIt->payload()->GetReferenceCount ()<<std::endl;
+
     				  base_.erase (&(*trieIt) ) ;
     				  std::cout<< "cache of the tag-In is full" <<std::endl;
+	 				  std::cout<< "==========================================================================" <<std::endl;
 
     	   } //endif 2
           else // 如果来的tag的数量小于max值
@@ -231,13 +288,16 @@ struct lfu_policy_save_tag_traits
         		  if(count_vect_by_tag[i] >= max_vect_by_tag[i])
         		  {
 
-
+        				//std::cout << "trieit结果0的count" << trieIt->payload()->GetReferenceCount ();
         			     GetTrieIter(tag , i+1 ,trieIt) ;
+        			 	std::cout << "trieit结果2的count, tag-other" << trieIt->payload()->GetReferenceCount ()<<std::endl;
         			      //问题就是没获得相应的trieIt 其为 空
         				//  std::cout << " fuck    " << trieIt->payload()->GetName().toUri() << std::endl;
 						  base_.erase (&(*trieIt) );
 						  isErased = true;
 		 				  std::cout<< "cache of the tag-Other is full" <<std::endl;
+		 				  std::cout<< "==========================================================================" <<std::endl;
+
 
         		   }
         		   if (isErased) break ;
@@ -331,8 +391,13 @@ struct lfu_policy_save_tag_traits
 							tag)) {
 
 						if (tag.Get() == tag_value) {
+
+
+							std::cout << "iter结果的count" << iter->payload()->GetReferenceCount ()<<std::endl;
+
 							std::cout << "cs的容量" << policy_container::size() << std::endl;
 							trieIt = &(*iter);
+							std::cout << "trieit结果1的count" << trieIt->payload()->GetReferenceCount ()<<std::endl;
 							break;
 						}
 					}
