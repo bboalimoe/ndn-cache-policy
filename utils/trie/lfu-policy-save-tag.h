@@ -204,7 +204,7 @@ struct lfu_policy_save_tag_traits
 
       void CalNewMaxValue()
       {
-    	  uint32_t temp_sum;
+    	  uint32_t temp_sum = 0;
     	  for (int i = 0 ; i<= 4 ; i++) {//
 
         		  max_vect_by_tag[i] = int(max_size_ * ratio[i]) ;
@@ -245,6 +245,8 @@ struct lfu_policy_save_tag_traits
       inline bool
       insert (typename parent_trie::iterator item)    //改了
       {
+    	 // 问题1:因为interest的种类太少..所以...一直添不满... 换成 1000就好了!!
+    //	/ 问题2:看一下算cschangespace 肯定是0 , 搞不清楚怎么回事儿.......
     	get_order (item) = 0 ;
     	DataSaveTag tag ;
     	uint32_t tag_value ;
@@ -255,16 +257,39 @@ struct lfu_policy_save_tag_traits
          }
 
 
+
         /// 统计各个tag的entry数量
         std::vector<int> count_vect_by_tag(5);
 		count_vect_by_tag = GetCountByTag(count_vect_by_tag); //这是获得各个类别的cs中的数量.
         // after this ,nvect_by_tag 就被填充满了
         CalNewMaxValue() ;  //为了把 max_vect_by_tag填满. 当获得新的ratio后,
 
+        BOOST_FOREACH(int realcount, count_vect_by_tag)
+          	               {
+          	              	std::cout << "实际的count数   " << realcount << "\t" ;
+          	               };
+
+			 std::cout << std::endl;
+
         typename parent_trie::iterator trieIt;
 
        if (policy_container::size() ==  max_size_ )   //if 1    不满的话就随便添.
        {
+/*
+    	   BOOST_FOREACH(int realcount, count_vect_by_tag)
+    	               {
+    	              	std::cout << "实际的count数   " << realcount << "\t" ;
+    	               };
+    	            //   std::cout << std::endl;
+
+    		   BOOST_FOREACH(int realcount, max_vect_by_tag)
+    				 {
+    				std::cout << "最大的count数,max count   " << realcount << "\t" ;
+    				 };
+*/
+
+
+
     	   // 如果某一个tag的大于其规定的max值
     	   //hengheng 看看这里能否重构一下
     	   //std::cout << "max size" << max_size_ <<  std::endl;
@@ -272,11 +297,11 @@ struct lfu_policy_save_tag_traits
           if(count_vect_by_tag[tag_value -1] >= max_vect_by_tag[tag_value -1]) // if 2 如果来的tag的数量大于max值
     	   {
 					  GetTrieIter(tag, tag_value, trieIt) ;
-      			 	std::cout << "trieit结果2的count, tag-in" << trieIt->payload()->GetReferenceCount ()<<std::endl;
+      			  //	std::cout << "trieit结果2的count, tag-in" << trieIt->payload()->GetReferenceCount ()<<std::endl;
 
     				  base_.erase (&(*trieIt) ) ;
-    				  std::cout<< "cache of the tag-In is full" <<std::endl;
-	 				  std::cout<< "==========================================================================" <<std::endl;
+    			//	  std::cout<< "cache of the tag-In is full" <<std::endl;
+	 		//		  std::cout<< "==========================================================================" <<std::endl;
 
     	   } //endif 2
           else // 如果来的tag的数量小于max值
@@ -290,13 +315,13 @@ struct lfu_policy_save_tag_traits
 
         				//std::cout << "trieit结果0的count" << trieIt->payload()->GetReferenceCount ();
         			     GetTrieIter(tag , i+1 ,trieIt) ;
-        			 	std::cout << "trieit结果2的count, tag-other" << trieIt->payload()->GetReferenceCount ()<<std::endl;
+        		//	 	std::cout << "trieit结果2的count, tag-other" << trieIt->payload()->GetReferenceCount ()<<std::endl;
         			      //问题就是没获得相应的trieIt 其为 空
         				//  std::cout << " fuck    " << trieIt->payload()->GetName().toUri() << std::endl;
 						  base_.erase (&(*trieIt) );
 						  isErased = true;
-		 				  std::cout<< "cache of the tag-Other is full" <<std::endl;
-		 				  std::cout<< "==========================================================================" <<std::endl;
+		 			//	  std::cout<< "cache of the tag-Other is full" <<std::endl;
+		 				//  std::cout<< "==========================================================================" <<std::endl;
 
 
         		   }
@@ -393,11 +418,11 @@ struct lfu_policy_save_tag_traits
 						if (tag.Get() == tag_value) {
 
 
-							std::cout << "iter结果的count" << iter->payload()->GetReferenceCount ()<<std::endl;
+							//std::cout << "iter结果的count" << iter->payload()->GetReferenceCount ()<<std::endl;
 
-							std::cout << "cs的容量" << policy_container::size() << std::endl;
+							//std::cout << "cs的容量" << policy_container::size() << std::endl;
 							trieIt = &(*iter);
-							std::cout << "trieit结果1的count" << trieIt->payload()->GetReferenceCount ()<<std::endl;
+						//	std::cout << "trieit结果1的count" << trieIt->payload()->GetReferenceCount ()<<std::endl;
 							break;
 						}
 					}

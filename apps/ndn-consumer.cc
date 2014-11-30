@@ -220,6 +220,9 @@ Consumer::SendPacket ()
   Ptr<Interest> interest = Create<Interest> ();
   interest->SetNonce               (m_rand.GetValue ());
   interest->SetName                (nameWithSequence);
+
+  //std::cout << "前缀为" << nameWithSequence->getPrefix(2, 0) << std::endl;
+
   interest->SetInterestLifetime    (m_interestLifeTime);
 
   // NS_LOG_INFO ("Requesting Interest: \n" << *interest);
