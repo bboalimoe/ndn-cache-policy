@@ -281,20 +281,20 @@ class HitTraceTable :  public  SimpleRefCount<HitTraceTable>
 	   //Simulator::Schedule (t+Seconds(10.0), &HitTraceTable::CalCsRatioByTag, this, t+Seconds(10));
 	   //做check 如果cachehits 各个tag有一个为0 ，则return 不执行cs限定数目的更改
 
-	   /*
+
 	   int count_out = 0;
 	   for(int i = 0 ; i <= 4; i ++)
 	   {
 		   if (m_stats.m_cacheHits_vect[i].int_tag == 0) count_out++ ;
 		   //NS_LOG_DEBUG(  "第" <<i << "类的hits数量 =" << m_stats.m_cacheHits_vect[i].int_tag );
-           if(count_out > 2) return ;
+           if(count_out == 5 ) return ;
            //todo
            //因为这里ｒｅｔｕｒｎ了　所以．．．只显示１号和５３号的
 	   }
-	   */
+
 
 	   ///如果都不为零 ，则进行计算！
-     float sum;
+     float sum = 0.0;
 
 
 
