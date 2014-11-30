@@ -132,8 +132,12 @@ protected:
   static std::vector<int> HopCntTotalByTag;
   static std::vector<int> InterestBackTotalByTag;
   static  std::vector<uint32_t>   TotalInterestSendOutCounts;
+
   static Time TrackTime1;
   static Time TrackTime2;
+
+  int  interestCate;
+
 protected:
   UniformVariable m_rand; ///< @brief nonce generator
 

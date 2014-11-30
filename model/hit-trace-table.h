@@ -202,14 +202,15 @@ class HitTraceTable :  public  SimpleRefCount<HitTraceTable>
 
        std::vector<float> original_ratio = m_cs->GetRatio();
  	  Ptr<ns3::Node> m_node = m_cs->GetObject<ns3::Node> ();
- 	  std::cout << "节点号 = " << m_node->GetId() <<std::endl;
+ 	  //std::cout << "节点号 = " << m_node->GetId() <<std::endl;
       uint32_t max_size_cs = m_cs->GetMaxSize();
 
-
+/*
       for (int i =0 ; i <=4 ;i++)
       {
     	  std::cout << "each tag ratio=" << original_ratio[i] << std::endl;
       }
+      */
      // std::cout <<  "MaxSize=" << max_size_cs << std::endl;
 
        std::vector<float> ratio_vect(5) ;
@@ -240,7 +241,7 @@ class HitTraceTable :  public  SimpleRefCount<HitTraceTable>
    	//为啥 没调用这个函数....................
 
    	 m_cs->SetRatio(ratio_vect) ;
-  	//std::cout << "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"  << std::endl;
+  	std::cout << "节点"<<m_node->GetId() <<"    ==================================一次调整结束"  << std::endl;
 
    }
 
@@ -315,7 +316,7 @@ class HitTraceTable :  public  SimpleRefCount<HitTraceTable>
    	   m_tag_data[i].m_new_hitsrate =  m_stats.m_cacheHits_vect[i].int_tag / sum ;
    	   m_tag_data[i].m_new_error = m_stats.m_cacheHits_vect[i].int_tag / sum - initialWeight[i] ;
    	    //把initial weight 改为 old value
-
+   	   std::cout << "m_tag_data[i].m_new_error    " << m_tag_data[i].m_new_error  <<std::endl;
      }
      
   // 计算降噪的hits数
@@ -325,12 +326,14 @@ class HitTraceTable :  public  SimpleRefCount<HitTraceTable>
    	   m_tag_data[i].deno_new_hits= alpha * m_tag_data[i].m_new_hits + \
    			                                                               (1-alpha) * m_tag_data[i].deno_old_hits ;
    	   deno_hits_sum += m_tag_data[i].deno_new_hits ;
-
+   	   std::cout << "deno_hits_sum    " << deno_hits_sum <<std::endl;
      }
       int delta_tag_sum = 0;
      for ( int i = 0 ; i<=3 ; i++)
      {
-   	   m_delta_tag[i] = int(   deno_hits_sum / K *       (m_tag_data[i].m_new_error - (1-alpha) * m_tag_data[i].m_old_error)    ) ;
+    	 float temp_sum = float(deno_hits_sum)  / K *       (m_tag_data[i].m_new_error - (1-alpha) * m_tag_data[i].m_old_error) ;
+   	     std::cout << "改变的个数" << (temp_sum * 10000 ) << std::endl;
+   			   m_delta_tag[i] = int(  temp_sum   ) ;
    	    //todo;
 
    	   delta_tag_sum += m_delta_tag[i] ;
@@ -346,7 +349,7 @@ class HitTraceTable :  public  SimpleRefCount<HitTraceTable>
       // 做变化,改cs
      //NS_LOG_DEBUG(  "now the time is " << Simulator::Now() );
      //NS_LOG_DEBUG(  m_tag_data[1].deno_new_hitsrate );
-     this->PrintHitRate(m_tag_data);
+    // this->PrintHitRate(m_tag_data);
       this->ChangeCsRatioByTag();
       // 将new值转化给old值
 
